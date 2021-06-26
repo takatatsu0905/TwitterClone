@@ -1,0 +1,245 @@
+/* 全体 */
+.container {
+    display: flex;
+    justify-content: center;
+}
+
+.side {
+    width: 90px;
+}
+
+.main {
+    width: calc(100% - 90px);
+    max-width: 600px;
+    border-left: 1px solid #eef;
+    border-right: 1px solid #eef;
+    text-align: left;
+}
+
+@media screen and (max-width: 500px) {
+    .content {
+        padding: 0;
+    }
+
+    .size {
+        width: 60px;
+    }
+
+    .main {
+        width: calc(100% - 60px);
+    }
+}
+
+.nav-link {
+    padding: .3rem .3rem;
+}
+
+.btn {
+    background-color: #1af;
+    color: #fff;
+    font-size: 15px;
+    font-weight: bold;
+}
+
+.btn:hover {
+    color: #fff;
+}
+
+a {
+    text-decoration: none;
+}
+
+/* サイド */
+.side .side-inner {
+    top: 0;
+    padding-top: 20px;
+    position: sticky;
+    height: 100vh;
+    text-align: center;
+}
+
+.side .side-inner img {
+    width: 35%;
+    margin-bottom: 15px;
+}
+
+.side .side-inner img.icon {
+    width: 70%;
+}
+
+.side .side-inner img.post-tweet {
+    width: 80%;
+}
+
+.side .side-inner .my-icon {
+    position: absolute;
+    bottom: 0;
+    z-index: 1;
+}
+
+.side .side-inner .my-icon img {
+    border-radius: 50%;
+    border: 1px solid #aaa;
+    width: 60%;
+}
+
+@media screen and (max-width: 500px) {
+    .side .side-inner img {
+        width:75%;
+        margin-bottom: 15px;
+    }
+
+    .side .side-inner img.icon {
+        width: 85%;
+    }
+
+    .side .side-inner img.post-tweet {
+        width: 100%;
+    }
+
+    .side .side-inner .my-icon img {
+        width: 90%
+    }
+}
+
+/* メイン */
+.main .main-header {
+    border-bottom: 1px solid #eef;
+    padding: 20px;
+}
+
+.main .main-header h1 {
+    line-height: 20px;
+    font-size: 20px;
+    margin-bottom: 0;
+    font-weight: bold;
+}
+
+/* ホーム */
+.home .tweet-post {
+    display: flex;
+    padding: 10px;
+}
+
+.home .tweet-post .my-icon {
+    width: 80px;
+    padding: 5px 15px 10px 10px;
+}
+
+.home .tweet-post .my-icon img {
+    width: 100%;
+    border-radius: 50%;
+    border: 1px solid #aaa;
+}
+
+.home .tweet-post .input-area {
+    width: calc(100% - 80px);
+    flex-grow: 1;
+}
+
+.home .tweet-post .input-area textarea {
+    border: 0;
+    width: 100%;
+    height: 100px;
+    resize: none;
+}
+
+.home .tweet-post .input-area textarea:focus {
+    outline: none;
+}
+
+.home .tweet-post .input-area .bottom-area {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    border-top: 1px solid #eef;
+    padding-top: 8px;
+}
+
+.home .ditch {
+    height: 15px;
+    background-color: #f7f8f8;
+    border-top: 1px solid #eef;
+    border-bottom: 1px solid #eef;
+}
+
+.home .tweet-list .tweet {
+    display: flex;
+    padding: 10px;
+    border-bottom: 1px solid #eef;
+}
+
+.home .tweet-list .user {
+    width: 80px;
+    padding: 5px 15px 10px 10px;
+}
+
+.home .tweet-list .user img {
+    width: 100%;
+    border-radius: 50%;
+    border: 1px solid #aaa;
+}
+
+.home .tweet-list .name {
+    padding-top: 5px;
+}
+
+.home .tweet-list .name a {
+    color: #112;
+}
+
+.home .tweet-list .name a .nickname {
+    font-weight: bold;
+    font-size: 17px;
+    color: #112;
+}
+
+.home .tweet-list .name a .user-name {
+    font-size: 14px;
+    color: #444;
+}
+
+.home .tweet-list .content {
+    width: calc(100% - 60px);
+}
+
+.home .tweet-list .content p {
+    font-size: 16px;
+    padding: 8px 0 0 0;
+    margin-bottom: 8px;
+}
+
+.home .tweet-list .tweet .content img.post-image {
+    width: 100%;
+    border-radius: 15px;
+    margin-bottom: 10px;
+    margin-right: 5px;
+    border: 1px solid #eef;
+}
+
+.home .tweet-list .content .icon-list {
+    display: flex;
+}
+
+.home .tweet-list .content .icon-list .like img {
+    width: 25px;
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+.home .tweet-list .content .icon-list .like-count {
+    width: 25px;
+    padding-top: 2px;
+    color: #444;
+}
+
+@media screen and (max-width: 500px) {
+    .home .tweet-list .tweet .user {
+        width:60px;
+        padding: 5px 10px 10px 5px;
+    }
+
+    .bottom-area .btn {
+        margin-top: 10px;
+    }
+}
