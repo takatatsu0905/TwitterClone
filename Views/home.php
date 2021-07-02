@@ -1,3 +1,10 @@
+<?php
+//エラー表示あり
+ini_set('display_errors',1);
+//日本時間にする
+
+?>
+
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -25,7 +32,7 @@
                     <li class="nav-item my-icon"><img src="\TwitterClone\Views\img_uploaded\user\sample-person.jpg" alt=""></li>
                 </ul>
             </div>
-        </div> 
+        </div>
         <div class="main">
             <div class="main-header">
                 <h1>ホーム</h1>
