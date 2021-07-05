@@ -142,12 +142,14 @@ function convertToDayTimeAgo(string $datetime)
                     </form>
                 </div>
             </div>
+
             <div class="ditch"></div>
 
+            <!-- ユーザーの名前、ツイート内容など -->
             <?php if (empty($view_tweets)): ?>
                 <p class="p-3">ツイートがまだありません。</p>
             <?php else: ?>
-
+            
                 <div class="tweet-list">
                     <?php foreach ($view_tweets as $view_tweet):?>
                         <div class="tweet">
