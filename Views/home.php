@@ -115,6 +115,7 @@ function convertToDayTimeAgo(string $datetime)
 
     <title>ホーム画面 /　Twitterクローン</title>
 </head>
+
 <body class="home">
     <div class="container">
         <div class="side">
