@@ -65,6 +65,10 @@ a {
     text-decoration: none;
 }
 
+.text-sm {
+    font-size: 0.7rem;
+}
+
 /* サイド */
 .side .side-inner {
     top: 0;
