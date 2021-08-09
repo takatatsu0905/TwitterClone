@@ -1,8 +1,8 @@
 <?php
-//////////////////////////
-//ツイートデータを処理
-//////////////////////////
-
+///////////////////////////////////////
+// ツイートデータを処理
+///////////////////////////////////////
+ 
 /**
  * ツイート作成
  *
@@ -14,35 +14,35 @@ function createTweet(array $data)
     // DB接続
     $mysqli = new mysqli(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
     // 接続エラーがある場合->処理停止
-    if($mysqli->connect_errno){
-        echo 'MySQLの接続に失敗しました。 :' . $mysqli->connect_error . "\n";
+    if ($mysqli->connect_errno) {
+        echo 'MySQLの接続に失敗しました。：' . $mysqli->connect_error . "\n";
         exit;
     }
-
-    //新規登録のSQLクエリを作成
-    $query = 'INSERT INTO tweets(user_id, body, image_name) VALUES(?, ?, ?)';
-
-    // プリペアードステートメントにクエリを登録
+ 
+    // 新規登録のSQLクエリを作成
+    $query = 'INSERT INTO tweets (user_id, body, image_name) VALUES (?, ?, ?)';
+ 
+    // プリペアドステートメントにクエリを登録
     $statement = $mysqli->prepare($query);
-
-    //プレースホルダーにカラム値を紐づけ (i=int s=string)
-    $statement->bind_param('iss', $data['user_id'], $data['body'], $data['image_name']); 
-
-    //クエリを実行
+ 
+    // プレースホルダにカラム値を紐付け（i=int, s=string）
+    $statement->bind_param('iss', $data['user_id'], $data['body'], $data['image_name']);
+ 
+    // クエリを実行
     $response = $statement->execute();
-    if($response === true){
-        echo 'エラーメッセージ : ' . $mysqli->error . "\n";
+    if ($response === false) {
+        echo 'エラーメッセージ：' . $mysqli->error . "\n";
     }
-
-    //DB接続を解放
+ 
+    // DB接続を解放
     $statement->close();
     $mysqli->close();
-
+ 
     return $response;
 }
-
+ 
 /**
- * ツイート一覧を取得する
+ * ツイート一覧を取得
  *
  * @param array $user ログインしているユーザー情報
  * @return array|false
@@ -52,15 +52,15 @@ function findTweets(array $user)
     // DB接続
     $mysqli = new mysqli(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
     // 接続エラーがある場合->処理停止
-    if($mysqli->connect_errno){
-        echo 'MySQLの接続に失敗しました。 :' . $mysqli->connect_error . "\n";
+    if ($mysqli->connect_errno) {
+        echo 'MySQLの接続に失敗しました。：' . $mysqli->connect_error . "\n";
         exit;
     }
-
-    //ログインユーザーIDをエスケープ
+ 
+    // ログインユーザーIDをエスケープ
     $login_user_id = $mysqli->real_escape_string($user['id']);
-
-    //検索のSQLクエリを作成
+ 
+    // 検索のSQLクエリを作成
     $query = <<<SQL
         SELECT
             T.id AS tweet_id,
@@ -78,27 +78,27 @@ function findTweets(array $user)
             (SELECT COUNT(*) FROM likes WHERE status = 'active' AND tweet_id = T.id) AS like_count
         FROM
             tweets AS T
-            -- ユーザーテーブルをusers.idとtweets.user_idで紐づける
+            -- ユーザーテーブルをusers.idとtweets.user_idで紐付ける
             JOIN
             users AS U ON U.id = T.user_id AND U.status = 'active'
-            -- いいね！テーブルをlikes.tweet_idとtweets.idで紐づける
+            -- いいね！テーブルをlikes.tweet_idとtweets.idで紐付ける
             LEFT JOIN
             likes AS L ON L.tweet_id = T.id AND L.status = 'active' AND L.user_id = '$login_user_id'
         WHERE
             T.status = 'active'
     SQL;
-
-    //クエリ実行
+ 
+    // クエリ実行
     $result = $mysqli->query($query);
-    if($result){
-        //データを配列で受け取る
+    if ($result) {
+        // データを配列で受け取る
         $response = $result->fetch_all(MYSQLI_ASSOC);
-    }else{
+    } else {
         $response = false;
-        echo 'エラーメッセージ : ' . $mysqli->error . "\n";
+        echo 'エラーメッセージ：' . $mysqli->error . "\n";
     }
-
+ 
     $mysqli->close();
-
+ 
     return $response;
 }
